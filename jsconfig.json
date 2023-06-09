@@ -1,0 +1,6 @@
+{
+    "include" :[
+        "./src/components/main.vue",
+        "./src/App.vue"
+    ]
+}
