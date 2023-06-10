@@ -133,7 +133,7 @@ export default {
       ],
       searchTerm: "",
       categories: ["all", "lunch", "breakfast", "dessert"],
-      MenuItems: [], // Updated property name
+      filteredMenuItems: [], // Updated property name
     };
   },
   computed: {
