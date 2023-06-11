@@ -1,5 +1,14 @@
 <template>
-  <div>
+
+     <div class="container">
+        <input
+        id="search-input"
+        type="text"
+        v-model="searchTerm"
+        placeholder="Search menu items"
+        />
+     </div>
+
     <div class="btn-container">
       <button
         class="filter-btn"
@@ -11,12 +20,7 @@
         {{ category }}
       </button>
     </div>
-    <input
-      id="search-input"
-      type="text"
-      v-model="searchTerm"
-      placeholder="Search menu items"
-    />
+  
     <div class="section-center">
       <article class="menu-item" v-for="item in filteredMenuItems" :key="item.id">
         <img :src="item.img" class="photo" :alt="item.title" />
@@ -31,8 +35,9 @@
         </div>
       </article>
     </div>
-    <button class="btn-container2" @click="scrollToTop">Back to Top</button>
-  </div>
+    <div class="btn-container2">
+      <button class="btt-btn" @click="scrollToTop">Back to Top</button>
+    </div>
 </template>
 
 <script>
@@ -78,7 +83,7 @@ export default {
       {
         id: 5,
         title: "cheesecake",
-        category: "desert",
+        category: "dessert",
         price: 2.60,
         img: "./slike/slika5.jpg",
         desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, dicta. 
@@ -113,7 +118,7 @@ export default {
       },
       {
         id: 9,
-        title: "blueberry banana oatmeal",
+        title: "blueberry oatmeal",
         category: "breakfast",
         price: 4.60,
         img: "./slike/slika9.jpg",
@@ -123,7 +128,7 @@ export default {
       {
         id: 10,
         title: "chocolate brownie",
-        category: "desert",
+        category: "dessert",
         price: 2.60,
         img: "./slike/slika10.jpg",
         desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, dicta. 
