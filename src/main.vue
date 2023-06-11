@@ -6,6 +6,7 @@
         type="text"
         v-model="searchTerm"
         placeholder="Search menu items"
+        @keyup.enter="filteredMenu()"
         />
      </div>
 
@@ -141,19 +142,20 @@ export default {
       filteredMenuItems: [], // Updated property name
     };
   },
-  computed: {
+
+  methods: {
+
     filteredMenu() {
       const searchTerm = this.searchTerm.toLowerCase();
       if (searchTerm === "") {
         return this.menu;
       } else {
-        return this.menu.filter((menuItem) =>
+        this.filteredMenuItems = this.menu.filter((menuItem) =>
           menuItem.title.toLowerCase().includes(searchTerm)
         );
       }
     },
-  },
-  methods: {
+
     filterMenuItems(category) {
       if (category === "all") {
         this.filteredMenuItems = this.menu; // Update property assignment
