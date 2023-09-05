@@ -1,11 +1,28 @@
 <template>
 
-     <div class="container">
+      <div class="container">
+        <div class="slider-container">
+          <input
+            id="price-slider"
+            type="range"
+            min="2.6"
+            max="20"
+            v-model="priceRange"
+            @input="updateFilteredMenuItems"
+          />
+          <button class="random-btn" @click="displayRandomItem()"><i class="fa-solid fa-shuffle"></i>choose random item</button>
+
+          <div class="progress-bar" :style="{ width: priceRange * 5 + '%' }"></div>
+          
+        </div>
+      </div>
+
+     <div class="container2">
         <input
         id="search-input"
         type="text"
         v-model="searchTerm"
-        placeholder="Search menu items"
+        placeholder="Search by name"
         @keyup.enter="filteredMenu()"
         />
      </div>
@@ -140,6 +157,7 @@ export default {
       searchTerm: "",
       categories: ["all", "lunch", "breakfast", "dessert"],
       filteredMenuItems: [], // Updated property name
+      priceRange: 0,
     };
   },
 
@@ -165,12 +183,31 @@ export default {
         );
       }
     },
+
+    updateFilteredMenuItems() {
+      const priceRange = this.priceRange;
+      if (priceRange === 0) {
+        this.filteredMenuItems = this.menu;
+      } else {
+        this.filteredMenuItems = this.menu.filter(
+          (menuItem) => menuItem.price <= priceRange
+        );
+      }
+    },
+
     scrollToTop() {
       window.scrollTo({
         top: 0,
         behavior: "smooth",
       });
     },
+
+    displayRandomItem() {
+      const randomIndex = Math.floor(Math.random() * this.menu.length);
+      const randomItem = this.menu[randomIndex];
+      this.filteredMenuItems = [randomItem];
+    },
+    
   },
   mounted() {
     this.filteredMenuItems = this.menu; // Update property assignment
